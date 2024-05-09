@@ -10,6 +10,6 @@ package entrega3proyecto;
  */
 public class Constantes {
     public static final String USERNAME = "is389404";
-    public static final String PASSWORD = "8ShgMJWgwKKtWC";
-    public static final String THINCONN ="jdbc:oracle:thin:@orion.javeriana.edu.co:1521:pujdb"; 
+    public static final String PASSWORD = "s8ShgMJWgwKKtWC";
+    public static final String THINCONN ="jdbc:oracle:thin:@orion.javeriana.edu.co:1521/LAB"; 
 }
