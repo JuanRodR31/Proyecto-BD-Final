@@ -12,6 +12,7 @@ import java.util.Scanner;
  */
 public class PantallaAppMusica {
     public static void main(String[] args){
+        int codArtista=1000;
         RepositorioAppMusica repoAppMusica = new RepositorioAppMusica();
         String opc;
         Scanner scanner = new Scanner(System.in);
@@ -20,7 +21,7 @@ public class PantallaAppMusica {
           opc=scanner.nextLine();
           switch (opc) {
                 case "0"->System.out.println("Adios");
-                case "1"-> repoAppMusica.agregarArtista();
+                case "1"-> agregarArtista(repoAppMusica, codArtista);
                 case "2"->repoAppMusica.agregarAlbumOep();
                 case "3"->repoAppMusica.suscribirse();
                 case "4"->repoAppMusica.iniciarSesion();
@@ -46,5 +47,15 @@ public class PantallaAppMusica {
         System.out.println ("7. Modificar Lista de Reproducción");
         System.out.println ("8. Simular reproducir canción");
         System.out.println ("0. Salir");
+    }
+    private static void agregarArtista (RepositorioAppMusica repo,int codArtista){
+         System.out.println ("ingrese el nombre del artista:");
+         Scanner scanner = new Scanner(System.in);
+         String nombre=scanner.nextLine();
+         System.out.println ("ingrese el nombre artistico:");
+         String nombreArtistico=scanner.nextLine();
+         System.out.println ("ingrese el nombre artistico:");
+         int idPais =Integer.parseInt(scanner.nextLine());
+         repo.agregarArtista(codArtista,nombre, nombreArtistico,idPais);
     }
 }
