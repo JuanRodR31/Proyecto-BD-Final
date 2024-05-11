@@ -4,19 +4,35 @@
  */
 package Presentacion;
 
+import modelo.Login;
+import modelo.LoginDAO;
+
 /**
  *
  * @author estudiante
  */
-public class Login extends javax.swing.JFrame {
+public class PantallaLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public PantallaLogin() {
         initComponents();
     }
-
+    public void validar (){
+        Login lg = new Login ();
+        LoginDAO login = new LoginDAO();
+        String nickname = usuarioTextField.getText();
+        String contrasena= String.valueOf(contrasenaTextField.getPassword());
+        if(!"".equals(nickname)|| !"".equals(contrasena)){
+            lg = login.log(nickname, contrasena);
+            if (lg.getNickname() != null && lg.getContrasena()!= null){
+                PantallaAdministrador pantAdmin= new PantallaAdministrador();
+                pantAdmin.setVisible(true);
+                dispose();
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +44,7 @@ public class Login extends javax.swing.JFrame {
 
         botonIniciarSesion = new javax.swing.JButton();
         usuarioTextField = new javax.swing.JTextField();
-        contraseñaTextField = new javax.swing.JPasswordField();
+        contrasenaTextField = new javax.swing.JPasswordField();
         labelUsuario = new javax.swing.JLabel();
         labelContraseña = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -41,6 +57,12 @@ public class Login extends javax.swing.JFrame {
         botonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonIniciarSesionActionPerformed(evt);
+            }
+        });
+
+        contrasenaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contrasenaTextFieldActionPerformed(evt);
             }
         });
 
@@ -65,7 +87,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(418, 418, 418)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(contraseñaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contrasenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelUsuario)
                     .addComponent(labelContraseña))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -100,7 +122,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addComponent(labelContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(contraseñaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contrasenaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonIniciarSesion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -114,8 +136,12 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        // TODO add your handling code here:
+        validar();
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
+
+    private void contrasenaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contrasenaTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contrasenaTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,27 +160,28 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new PantallaLogin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonIniciarSesion;
-    private javax.swing.JPasswordField contraseñaTextField;
+    private javax.swing.JPasswordField contrasenaTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entrega3proyecto.LogicaNegocio;
 
+import modelo.Constantes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,10 +8,7 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.PreparedStatement;
 import java.sql.Date;
-/**
- *
- * @author estudiante
- */
+
 public class RepositorioAppMusica {
     public void agregarArtista(int idInterprete, String nombre, String nombreArtistico, int idPais) {
         String SQL = "INSERT INTO INTERPRETE (ID, NOMBRE, NOMBREARTISTICO, PAIS_ID) VALUES (?, ?, ?, ?)";
@@ -54,6 +48,12 @@ public class RepositorioAppMusica {
         } catch (SQLException ex) {
             System.out.println("Error al agregar el álbum: " + ex.toString());
         }
+    }
+    public void crearCancion (){
+        
+    }
+    public void asociarCancionYAlbum (int idCancion, int idAlbum){
+        
     }
     public void suscribirse(){
         

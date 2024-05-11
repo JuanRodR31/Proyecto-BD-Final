@@ -27,7 +27,7 @@
               <EmptySpace min="-2" pref="418" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="usuarioTextField" min="-2" pref="211" max="-2" attributes="0"/>
-                  <Component id="contraseñaTextField" min="-2" pref="211" max="-2" attributes="0"/>
+                  <Component id="contrasenaTextField" min="-2" pref="211" max="-2" attributes="0"/>
                   <Component id="labelUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="labelContraseña" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -73,7 +73,7 @@
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Component id="labelContraseña" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="contraseñaTextField" min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="contrasenaTextField" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="botonIniciarSesion" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -96,7 +96,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="usuarioTextField">
     </Component>
-    <Component class="javax.swing.JPasswordField" name="contrase&#xf1;aTextField">
+    <Component class="javax.swing.JPasswordField" name="contrasenaTextField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contrasenaTextFieldActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="labelUsuario">
       <Properties>
