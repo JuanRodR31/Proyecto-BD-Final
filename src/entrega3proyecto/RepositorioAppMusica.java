@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -32,9 +33,26 @@ public class RepositorioAppMusica {
             ex.printStackTrace();
         }
     }
+    
+    public void agregarArtista(int idInterprete, String nombre, String nombreArtistico, int idPais) {
+        String SQL = "INSERT INTO interpretes (ID_INTERPRETE, NOMBRE, NOMBRE_ARTISTICO, ID_PAIS) VALUES (?, ?, ?, ?)";
+        try (Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+             PreparedStatement pstmt = conex.prepareStatement(SQL)) {
+            pstmt.setInt(1, idInterprete);
+            pstmt.setString(2, nombre);
+            pstmt.setString(3, nombreArtistico);
+            pstmt.setInt(4, idPais);
 
-    public void agregarArtista(){
-        
+            int filasAfectadas = pstmt.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Intérprete agregado exitosamente con ID: " + idInterprete);
+            } else {
+                System.out.println("No se pudo agregar el intérprete.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al agregar el intérprete: " + ex.toString());
+            ex.printStackTrace();
+        }
     }
     public void agregarAlbumOep(){
         
