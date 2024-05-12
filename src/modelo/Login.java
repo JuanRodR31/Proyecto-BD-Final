@@ -11,13 +11,15 @@ package modelo;
 public class Login {
         private String nickname;
         private String contrasena;
+        private String rol;
 
     public Login() {
     }
 
-    public Login(String nickname, String contraseña) {
+    public Login(String nickname, String contrasena, String rol) {
         this.nickname = nickname;
-        this.contrasena = contraseña;
+        this.contrasena = contrasena;
+        this.rol = rol;
     }
 
     public String getNickname() {
@@ -35,6 +37,13 @@ public class Login {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-        
+    
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
     
 }

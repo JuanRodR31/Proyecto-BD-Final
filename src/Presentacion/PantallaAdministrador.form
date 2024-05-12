@@ -88,46 +88,57 @@
               </Group>
               <EmptySpace pref="117" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LabelAgregarCancionAAlbum" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="labelIdiomaTitulo" min="-2" max="-2" attributes="0"/>
-                  <Component id="comboBoxIdiomaTituloCancion" min="-2" pref="239" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Component id="labelInterpretePrincipal" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelDuracionCancion" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelGeneroCancion" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="comboBoxInterpretePrincipal" alignment="0" min="-2" pref="239" max="-2" attributes="0"/>
-                              <Component id="textFieldTituloCancion" min="-2" pref="239" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="textFieldDuracionCancion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="comboBoxGeneroCancion" alignment="0" min="-2" pref="239" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="LabelAgregarCancionAAlbum" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="labelIdiomaTitulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboBoxIdiomaTituloCancion" min="-2" pref="239" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                      <Component id="labelInterpretePrincipal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelDuracionCancion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelGeneroCancion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="comboBoxInterpretePrincipal" alignment="0" min="-2" pref="239" max="-2" attributes="0"/>
+                                      <Component id="textFieldTituloCancion" min="-2" pref="239" max="-2" attributes="0"/>
+                                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="textFieldDuracionCancion" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="comboBoxGeneroCancion" alignment="0" min="-2" pref="239" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <Component id="lableTituloCancion" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="labelAlbumxCancion" min="-2" pref="66" max="-2" attributes="0"/>
+                                  <Component id="comboBoxAlbumCancion" min="-2" pref="239" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                  <Component id="lableTituloCancion" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="labelAlbumxCancion" min="-2" pref="66" max="-2" attributes="0"/>
-                          <Component id="comboBoxAlbumCancion" min="-2" pref="239" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="buttonCerrarSesion" min="-2" pref="122" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="LabelAgregarArtista" min="-2" max="-2" attributes="0"/>
-                  <Component id="LabelAgregarAlbumOEp" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="LabelAgregarArtista" min="-2" max="-2" attributes="0"/>
+                      <Component id="LabelAgregarAlbumOEp" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="buttonCerrarSesion" min="-2" pref="52" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -505,6 +516,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Album"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="buttonCerrarSesion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cerrar sesion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCerrarSesionActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

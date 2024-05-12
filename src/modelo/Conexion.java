@@ -7,11 +7,11 @@ public class Conexion {
     Connection con;
     public Connection getConnection(){
         try{
-            con= DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+            con = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
             return con;
-        }catch (SQLException e){
+        }catch (Exception e){
             System.out.println(e.toString());
-    }
-    return null;
+        }
+        return null;
     }
 }
