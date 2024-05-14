@@ -113,5 +113,26 @@ public class AdministradorDAO {
             System.out.println(e.toString());
         }
     }
+    public void agregarArtista(int idInterprete, String nombre, String nombreArtistico, int idPais) {
+        String sql = "INSERT INTO INTERPRETE (ID, NOMBRE, NOMBREARTISTICO, PAIS_ID) VALUES (?, ?, ?, ?)";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idInterprete);
+            ps.setString(2, nombre);
+            ps.setString(3, nombreArtistico);
+            ps.setInt(4, idPais);
+
+            int filasAfectadas = ps.executeUpdate();
+            if (filasAfectadas > 0) {
+                System.out.println("Intérprete agregado exitosamente con ID: " + idInterprete);
+            } else {
+                System.out.println("No se pudo agregar el intérprete.");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al agregar el intérprete: " + ex.toString());
+            ex.printStackTrace();
+        }
+    }
     
 }
