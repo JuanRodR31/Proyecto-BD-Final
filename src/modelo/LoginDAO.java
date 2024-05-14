@@ -14,7 +14,6 @@ public class LoginDAO {
         Login l = new Login();
         String sql = "SELECT * FROM USUARIO WHERE nickname = ? AND contrasena = ?";
         try {
-            //Connection con = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setString(1, nickname);
