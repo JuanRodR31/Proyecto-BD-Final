@@ -6,6 +6,7 @@ package Presentacion;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import javax.swing.JComboBox;
 import modelo.AdministradorDAO;
 
 /**
@@ -23,6 +24,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         llenarComboBoxEmpresasDiscograficas();
         llenarComboBoxIdiomas();
         llenarComboBoxGeneros();
+        llenarComboBoxCanciones();
+        llenarCOmboBoxArtistas(comboBoxArtistaSecundario);
+        llenarCOmboBoxArtistas(comboBoxInterpretePrincipal);
+        llenarComboBoxAlbumes ();
         
     }
     public void cerrarSesion (){
@@ -46,6 +51,25 @@ public class PantallaAdministrador extends javax.swing.JFrame {
          AdministradorDAO admin = new AdministradorDAO();
          admin.rellenarGeneros(comboBoxGeneroCancion);
     }
+    public final void llenarComboBoxCanciones(){
+        AdministradorDAO admin =new AdministradorDAO();
+        admin.rellenarCanciones(comboBoxCancion);
+    }
+    public final void llenarCOmboBoxArtistas(JComboBox comboBox){
+        AdministradorDAO admin = new AdministradorDAO();
+        admin.rellenarArtistas(comboBox);
+    }
+    public final void actualizarcomboBoxArtistas(){
+        comboBoxArtistaSecundario.removeAllItems();
+        AdministradorDAO admin = new AdministradorDAO();
+        admin.rellenarArtistas(comboBoxArtistaSecundario);
+    }
+
+    private void llenarComboBoxAlbumes() {
+        AdministradorDAO admin = new AdministradorDAO();
+        admin.rellenarAlbumes(comboBoxAlbumCancion);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,7 +104,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         labelInterpretePrincipal = new javax.swing.JLabel();
         comboBoxGeneroCancion = new javax.swing.JComboBox<>();
         comboBoxInterpretePrincipal = new javax.swing.JComboBox<>();
-        jButton3 = new javax.swing.JButton();
+        botonAgregarCancion = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         comboBoxCancion = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
@@ -95,6 +119,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         labelAlbumxCancion = new javax.swing.JLabel();
         buttonCerrarSesion = new javax.swing.JButton();
         comboBoxEmpresaDiscografica = new javax.swing.JComboBox<>();
+        textoResultadoArtista = new javax.swing.JLabel();
+        textoResultadoAgregarAlbum = new javax.swing.JLabel();
+        textoResultadoAgregarArtistaSecundario = new javax.swing.JLabel();
+        textoResultadoAgregarCancion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -183,19 +211,22 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         labelInterpretePrincipal.setText("Interprete Principal");
 
-        comboBoxInterpretePrincipal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton3.setText("Agregar Cancion");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxInterpretePrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                comboBoxInterpretePrincipalActionPerformed(evt);
+            }
+        });
+
+        botonAgregarCancion.setText("Agregar Cancion");
+        botonAgregarCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarCancionActionPerformed(evt);
             }
         });
 
         jLabel10.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel10.setText("Agregar artistas secundarios a cancion");
 
-        comboBoxCancion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBoxCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxCancionActionPerformed(evt);
@@ -206,7 +237,11 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         jLabel15.setText("Artista");
 
-        comboBoxArtistaSecundario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboBoxArtistaSecundario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxArtistaSecundarioActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Agregar Artista");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -219,8 +254,6 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         lableTituloCancion.setText("titulo");
 
-        comboBoxAlbumCancion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         labelAlbumxCancion.setText("Album");
 
         buttonCerrarSesion.setText("Cerrar sesion");
@@ -230,6 +263,21 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             }
         });
 
+        comboBoxEmpresaDiscografica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxEmpresaDiscograficaActionPerformed(evt);
+            }
+        });
+
+        textoResultadoArtista.setForeground(new java.awt.Color(255, 0, 51));
+        textoResultadoArtista.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        textoResultadoAgregarAlbum.setForeground(new java.awt.Color(255, 0, 0));
+
+        textoResultadoAgregarArtistaSecundario.setForeground(new java.awt.Color(204, 0, 0));
+
+        textoResultadoAgregarCancion.setForeground(new java.awt.Color(255, 0, 0));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,12 +286,33 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(121, 121, 121)
-                        .addComponent(buttonAgregarArtista)
-                        .addGap(113, 113, 113)
-                        .addComponent(comboBoxEmpresaDiscografica, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonAgregarArtista))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(textoResultadoArtista, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
+                                        .addGap(74, 74, 74)
+                                        .addComponent(botonAgregarAlbum)
+                                        .addGap(60, 60, 60))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel10)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(comboBoxArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel15)
+                                                    .addComponent(comboBoxCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabel14))
+                                                .addGap(91, 91, 91))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButton4)
+                                                .addGap(174, 174, 174))
+                                            .addComponent(textoResultadoAgregarArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(71, 71, 71))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(LabelAgregarArtista)
@@ -264,29 +333,14 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                     .addComponent(textFieldTituloAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(labelTituloAlbum)
                                     .addComponent(labelFechaLanzamiento)
-                                    .addComponent(textFieldFechaLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel10)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(comboBoxArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel15)
-                                            .addComponent(comboBoxCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel14))
-                                        .addGap(91, 91, 91))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton4)
-                                        .addGap(174, 174, 174))
-                                    .addComponent(botonAgregarAlbum))
-                                .addGap(71, 71, 71)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                                    .addComponent(textFieldFechaLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboBoxEmpresaDiscografica, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(textoResultadoAgregarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(LabelAgregarCancionAAlbum)
-                            .addComponent(labelIdiomaTitulo)
-                            .addComponent(comboBoxIdiomaTituloCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,12 +354,15 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                             .addComponent(comboBoxGeneroCancion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(6, 6, 6)
-                                            .addComponent(lableTituloCancion)))
+                                            .addComponent(lableTituloCancion))
+                                        .addComponent(comboBoxIdiomaTituloCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(labelIdiomaTitulo))
                                     .addComponent(labelAlbumxCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBoxAlbumCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jButton3)
-                                    .addGap(75, 75, 75))))
+                                    .addComponent(botonAgregarCancion)
+                                    .addGap(75, 75, 75))
+                                .addComponent(textoResultadoAgregarCancion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(128, 128, 128))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +380,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(labelNombreArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -345,13 +402,16 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(buttonAgregarArtista, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(comboBoxEmpresaDiscografica)
                                         .addGap(18, 18, 18)
+                                        .addComponent(textoResultadoArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(12, 12, 12)
+                                        .addComponent(comboBoxEmpresaDiscografica)
+                                        .addGap(4, 4, 4)
                                         .addComponent(botonAgregarAlbum)
-                                        .addGap(44, 44, 44))))
-                            .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)))
+                                .addGap(10, 10, 10))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(labelTituloAlbum)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textFieldTituloAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,7 +419,9 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                 .addComponent(labelFechaLanzamiento)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(textFieldFechaLanzamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(140, 140, 140)))
+                                .addGap(106, 106, 106)))
+                        .addComponent(textoResultadoAgregarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
@@ -370,8 +432,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBoxArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(31, 31, 31))
+                        .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LabelAgregarCancionAAlbum)
                         .addGap(18, 18, 18)
@@ -399,8 +460,13 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboBoxAlbumCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)
-                        .addGap(81, 81, 81))))
+                        .addComponent(botonAgregarCancion)
+                        .addGap(3, 3, 3)
+                        .addComponent(textoResultadoAgregarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textoResultadoAgregarArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -445,6 +511,19 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldNombreArtisticoActionPerformed
 
     private void buttonAgregarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarArtistaActionPerformed
+        AdministradorDAO admin = new AdministradorDAO();
+        String nombre= textFieldNombreArtista.getText();
+        String nombreArtistico = textFieldNombreArtistico.getText();
+        String pais= (String) comboBoxPais.getSelectedItem();
+        int paisid = admin.convertirPaisAID(pais);
+        boolean sePudoAgregar=admin.agregarArtista(nombre, nombreArtistico, paisid);
+        if (sePudoAgregar){
+            textoResultadoArtista.setText("Agregado existosamente");
+        }
+        else{
+            textoResultadoArtista.setText("Ocurrio un error al agregar el artista");
+        }
+        actualizarcomboBoxArtistas();
         
     }//GEN-LAST:event_buttonAgregarArtistaActionPerformed
 
@@ -456,9 +535,16 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldDuracionCancionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botonAgregarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarCancionActionPerformed
+        AdministradorDAO admin = new AdministradorDAO();
+        String idiomaTitulo = (String) comboBoxIdiomaTituloCancion.getSelectedItem();
+        String titulo = textFieldTituloCancion.getText();
+        int duracion = Integer.parseInt(textFieldDuracionCancion.getText());
+        String genero = (String) comboBoxGeneroCancion.getSelectedItem();
+        String interPretePrincipal = (String) comboBoxInterpretePrincipal.getSelectedItem();
+        String album = (String) comboBoxAlbumCancion.getSelectedItem();
+        admin.crearCancionYAsignarTituloYAlbum(idiomaTitulo, titulo, duracion,genero, interPretePrincipal, album);
+    }//GEN-LAST:event_botonAgregarCancionActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -471,6 +557,18 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private void comboBoxCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxCancionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboBoxCancionActionPerformed
+
+    private void comboBoxEmpresaDiscograficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxEmpresaDiscograficaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxEmpresaDiscograficaActionPerformed
+
+    private void comboBoxArtistaSecundarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxArtistaSecundarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxArtistaSecundarioActionPerformed
+
+    private void comboBoxInterpretePrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxInterpretePrincipalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxInterpretePrincipalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -513,6 +611,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel LabelAgregarArtista;
     private javax.swing.JLabel LabelAgregarCancionAAlbum;
     private javax.swing.JButton botonAgregarAlbum;
+    private javax.swing.JButton botonAgregarCancion;
     private javax.swing.JButton buttonAgregarArtista;
     private javax.swing.JButton buttonCerrarSesion;
     private javax.swing.JComboBox<String> comboBoxAlbumCancion;
@@ -523,7 +622,6 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxIdiomaTituloCancion;
     private javax.swing.JComboBox<String> comboBoxInterpretePrincipal;
     private javax.swing.JComboBox<String> comboBoxPais;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
@@ -548,5 +646,9 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldNombreArtistico;
     private javax.swing.JTextField textFieldTituloAlbum;
     private javax.swing.JTextField textFieldTituloCancion;
+    private javax.swing.JLabel textoResultadoAgregarAlbum;
+    private javax.swing.JLabel textoResultadoAgregarArtistaSecundario;
+    private javax.swing.JLabel textoResultadoAgregarCancion;
+    private javax.swing.JLabel textoResultadoArtista;
     // End of variables declaration//GEN-END:variables
 }

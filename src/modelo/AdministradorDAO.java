@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -113,7 +114,7 @@ public class AdministradorDAO {
             System.out.println(e.toString());
         }
     }
-    public void agregarArtista(int idInterprete, String nombre, String nombreArtistico, int idPais) {
+    /*public boolean agregarArtista(int idInterprete, String nombre, String nombreArtistico, int idPais) {
         String sql = "INSERT INTO INTERPRETE (ID, NOMBRE, NOMBREARTISTICO, PAIS_ID) VALUES (?, ?, ?, ?)";
         try {
             con= cn.getConnection();
@@ -125,14 +126,173 @@ public class AdministradorDAO {
 
             int filasAfectadas = ps.executeUpdate();
             if (filasAfectadas > 0) {
-                System.out.println("Intérprete agregado exitosamente con ID: " + idInterprete);
+                return true;
             } else {
-                System.out.println("No se pudo agregar el intérprete.");
+                return false;
             }
         } catch (SQLException ex) {
             System.out.println("Error al agregar el intérprete: " + ex.toString());
             ex.printStackTrace();
         }
+        return false;
+    }*/
+    
+    public boolean agregarArtista(String nombre, String nombreArtistico, int idPais) {
+    String sql = "INSERT INTO INTERPRETE (NOMBRE, NOMBREARTISTICO, PAIS_ID) VALUES (?, ?, ?)";
+    try {
+        con = cn.getConnection();
+        ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS); // Asegura que se devuelva la clave generada
+
+        ps.setString(1, nombre);
+        ps.setString(2, nombreArtistico);
+        ps.setInt(3, idPais);
+
+        int filasAfectadas = ps.executeUpdate();
+        
+        if (filasAfectadas > 0) {
+            ResultSet rs = ps.getGeneratedKeys(); // Obtiene las claves generadas
+            if (rs.next()) {
+                long idInterprete = rs.getLong(1); // Obtiene el ID generado
+                System.out.println("ID del intérprete agregado: " + idInterprete);
+                return true;
+            }
+        }
+        return false;
+    } catch (SQLException ex) {
+        System.out.println("Error al agregar el intérprete: " + ex.toString());
+        return false;
+    } finally {
+        try {
+            if (ps != null) {
+                ps.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar la conexión: " + e.toString());
+            e.printStackTrace();
+        }
     }
+    
+    
+}
+
+    public void rellenarCanciones(JComboBox comboBox) {
+        String sql= "SELECT * FROM idiomasxcancion";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                comboBox.addItem(rs.getString("nombrecancion"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public void rellenarArtistas(JComboBox comboBox) {
+        String sql= "SELECT * FROM interprete";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                comboBox.addItem(rs.getString("nombreArtistico"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+
+    public void rellenarAlbumes(JComboBox comboBox) {
+        String sql= "SELECT * FROM album";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                comboBox.addItem(rs.getString("titulo"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    public int convertirArtistaAID (String nombreArtistico){
+        String sql = "SELECT id FROM interprete WHERE nombreArtistico = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombreArtistico);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int idPais = rs.getInt("id");
+                return idPais;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return -1;
+    }
+    public int convertirAlbumAID (String titulo){
+        String sql = "SELECT idalbum FROM album WHERE TITULO = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, titulo);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int idPais = rs.getInt("idalbum");
+                return idPais;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return -1;
+    }
+    
+    public int convertirIdidiomaAID (String nombreIdioma){
+        String sql = "SELECT id FROM idioma WHERE nombreIdioma = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombreIdioma);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int idPais = rs.getInt("id");
+                return idPais;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return -1;
+    }
+    public int convertirGeneroAID (String nombreGenero){
+        String sql = "SELECT id FROM genero WHERE nombre = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombreGenero);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                int idPais = rs.getInt("id");
+                return idPais;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return -1;
+    }
+    public void crearCancionYAsignarTituloYAlbum (String idiomaTitulo, String titulo, int duracion,String genero, String interPretePrincipal, String album){
+        int idIdioma = convertirIdidiomaAID(idiomaTitulo);
+        int idInterpretePrincipal = convertirArtistaAID(interPretePrincipal);
+        int idAlbum = convertirAlbumAID(album);
+        int idGenero = convertirGeneroAID(genero);
+        System.out.println ("idioma"+ idIdioma + "interprete " + idInterpretePrincipal +" idalbum=" +idAlbum +"genero"+ idGenero);
+    }
+    
+
     
 }
