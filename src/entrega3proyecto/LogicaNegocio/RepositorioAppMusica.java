@@ -30,7 +30,7 @@ public class RepositorioAppMusica {
             ex.printStackTrace();
         }
     }
-    public void agregarAlbumOEp(int idAlbum, String titulo, Date fechaLanzamiento, int empresaDiscograficaId) {
+    public void agregarAlbumOEp(int idAlbum, String titulo, Date fechaLanzamiento, int empresaDiscograficaId, String albumOEP) {
         String SQL = "INSERT INTO ALBUM (IDALBUM, TITULO, FECHALANZAMIENTO, EMPRESADISCOGRAFICA_ID) VALUES (?, ?, ?, ?)";
         try (Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
              PreparedStatement pstmt = conex.prepareStatement(SQL)) {
@@ -38,7 +38,7 @@ public class RepositorioAppMusica {
             pstmt.setString(2, titulo);
             pstmt.setDate(3, fechaLanzamiento);
             pstmt.setInt(4, empresaDiscograficaId);
-
+            pstmt.setString(5,albumOEP);
             int filasAfectadas = pstmt.executeUpdate();
             if (filasAfectadas > 0) {
                 System.out.println("Álbum agregado exitosamente con ID: " + idAlbum);
