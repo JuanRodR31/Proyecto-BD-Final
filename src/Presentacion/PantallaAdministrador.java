@@ -61,8 +61,20 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     }
     public final void actualizarcomboBoxArtistas(){
         comboBoxArtistaSecundario.removeAllItems();
+        comboBoxInterpretePrincipal.removeAllItems();
         AdministradorDAO admin = new AdministradorDAO();
         admin.rellenarArtistas(comboBoxArtistaSecundario);
+        admin.rellenarArtistas(comboBoxInterpretePrincipal);
+    }
+    public final void actualizarComboBoxAlbum (){
+        AdministradorDAO admin = new AdministradorDAO();
+        comboBoxAlbumCancion.removeAllItems();
+        admin.rellenarAlbumes(comboBoxAlbumCancion);
+    }
+    public final void actualizarComboBoxCancion (){
+        AdministradorDAO admin = new AdministradorDAO();
+        comboBoxCancion.removeAllItems();
+        admin.rellenarCanciones(comboBoxCancion);
     }
 
     private void llenarComboBoxAlbumes() {
@@ -110,7 +122,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         comboBoxArtistaSecundario = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        botonAgregarArtistaSecundario = new javax.swing.JButton();
         labelIdiomaTitulo = new javax.swing.JLabel();
         comboBoxIdiomaTituloCancion = new javax.swing.JComboBox<>();
         lableTituloCancion = new javax.swing.JLabel();
@@ -243,10 +255,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Agregar Artista");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregarArtistaSecundario.setText("Agregar Artista");
+        botonAgregarArtistaSecundario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonAgregarArtistaSecundarioActionPerformed(evt);
             }
         });
 
@@ -273,10 +285,12 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         textoResultadoArtista.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         textoResultadoAgregarAlbum.setForeground(new java.awt.Color(255, 0, 0));
+        textoResultadoAgregarAlbum.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         textoResultadoAgregarArtistaSecundario.setForeground(new java.awt.Color(204, 0, 0));
 
         textoResultadoAgregarCancion.setForeground(new java.awt.Color(255, 0, 0));
+        textoResultadoAgregarCancion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,10 +322,10 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                                     .addComponent(comboBoxCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel14))
                                                 .addGap(91, 91, 91))
+                                            .addComponent(textoResultadoAgregarArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jButton4)
-                                                .addGap(174, 174, 174))
-                                            .addComponent(textoResultadoAgregarArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(botonAgregarArtistaSecundario)
+                                                .addGap(174, 174, 174)))))
                                 .addGap(71, 71, 71))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -432,7 +446,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBoxArtistaSecundario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4))
+                        .addComponent(botonAgregarArtistaSecundario))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(LabelAgregarCancionAAlbum)
                         .addGap(18, 18, 18)
@@ -491,7 +505,14 @@ public class PantallaAdministrador extends javax.swing.JFrame {
 
         String albumOEP = rbuttonAlbum.isSelected() ? "album" : "ep";
 
-        admin.agregarAlbumOEp(1, titulo, sqlFecha, 1, albumOEP);
+        boolean agregoAlbum =admin.agregarAlbumOEp(1, titulo, sqlFecha, 1, albumOEP);
+        if (agregoAlbum){
+            textoResultadoAgregarAlbum.setText("Se Agrego el album correctamente");
+        }
+        else{
+            textoResultadoAgregarAlbum.setText("Ocurrio un error al agregar el album");
+        }
+        actualizarComboBoxAlbum();
     }//GEN-LAST:event_botonAgregarAlbumActionPerformed
 
     private void textFieldTituloAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldTituloAlbumActionPerformed
@@ -525,6 +546,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         }
         actualizarcomboBoxArtistas();
         
+        
     }//GEN-LAST:event_buttonAgregarArtistaActionPerformed
 
     private void rbuttonAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbuttonAlbumActionPerformed
@@ -543,12 +565,28 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         String genero = (String) comboBoxGeneroCancion.getSelectedItem();
         String interPretePrincipal = (String) comboBoxInterpretePrincipal.getSelectedItem();
         String album = (String) comboBoxAlbumCancion.getSelectedItem();
-        admin.crearCancionYAsignarTituloYAlbum(idiomaTitulo, titulo, duracion,genero, interPretePrincipal, album);
+        boolean creoCancion= admin.crearCancionYAsignarTituloYAlbum(idiomaTitulo, titulo, duracion, genero, interPretePrincipal, album);
+        if (creoCancion){
+            textoResultadoAgregarCancion.setText("se agrego la cancion");
+        }
+        else {
+            textoResultadoAgregarCancion.setText("Ocurrio un error al agregar la cancion");
+        }
+        actualizarComboBoxCancion();
     }//GEN-LAST:event_botonAgregarCancionActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void botonAgregarArtistaSecundarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarArtistaSecundarioActionPerformed
+        AdministradorDAO admin = new AdministradorDAO();
+        String cancion = (String) comboBoxCancion.getSelectedItem();
+        String aritsta = (String) comboBoxArtistaSecundario.getSelectedItem();
+        boolean agregado = admin.agregarArtistaSecundarioACancion(cancion, aritsta);
+        if (agregado){
+            textoResultadoAgregarArtistaSecundario.setText("Agregado Correctamete");
+        }
+        else{
+            textoResultadoAgregarArtistaSecundario.setText("No se pudo agregar el artista secundario");
+        }
+    }//GEN-LAST:event_botonAgregarArtistaSecundarioActionPerformed
 
     private void buttonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCerrarSesionActionPerformed
         cerrarSesion();
@@ -611,6 +649,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel LabelAgregarArtista;
     private javax.swing.JLabel LabelAgregarCancionAAlbum;
     private javax.swing.JButton botonAgregarAlbum;
+    private javax.swing.JButton botonAgregarArtistaSecundario;
     private javax.swing.JButton botonAgregarCancion;
     private javax.swing.JButton buttonAgregarArtista;
     private javax.swing.JButton buttonCerrarSesion;
@@ -622,7 +661,6 @@ public class PantallaAdministrador extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxIdiomaTituloCancion;
     private javax.swing.JComboBox<String> comboBoxInterpretePrincipal;
     private javax.swing.JComboBox<String> comboBoxPais;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
