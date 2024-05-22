@@ -26,21 +26,75 @@ public class PantallaSuscribirse extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        botonSuscripcionGratuita = new javax.swing.JButton();
+        botonSuscripcionIndividual = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Felicidades, su usuario fue creado con éxito");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setText("Elija el tipo de suscripción");
+
+        botonSuscripcionGratuita.setText("Gratuita");
+        botonSuscripcionGratuita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSuscripcionGratuitaActionPerformed(evt);
+            }
+        });
+
+        botonSuscripcionIndividual.setText("Individual");
+        botonSuscripcionIndividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSuscripcionIndividualActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1141, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(204, 204, 204)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(botonSuscripcionGratuita, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(164, 164, 164)
+                        .addComponent(botonSuscripcionIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(121, 121, 121)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonSuscripcionIndividual, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonSuscripcionGratuita, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(244, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonSuscripcionGratuitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSuscripcionGratuitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSuscripcionGratuitaActionPerformed
+
+    private void botonSuscripcionIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSuscripcionIndividualActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonSuscripcionIndividualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +132,9 @@ public class PantallaSuscribirse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonSuscripcionGratuita;
+    private javax.swing.JButton botonSuscripcionIndividual;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

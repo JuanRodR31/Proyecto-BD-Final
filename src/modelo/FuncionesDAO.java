@@ -26,8 +26,7 @@ public class FuncionesDAO {
     //====================================================FUNCIONES LOGIN==========================================================================================
     public Login log(String nickname, String password) {
         Login l = new Login();
-        FuncionesDAO reg= new FuncionesDAO();
-        password= reg.encriptarConSHA256(password);
+        password= encriptarConSHA256(password);
         String sql = "SELECT * FROM USUARIO WHERE nickname = ? AND contrasena = ?";
         try {
             con = cn.getConnection();
