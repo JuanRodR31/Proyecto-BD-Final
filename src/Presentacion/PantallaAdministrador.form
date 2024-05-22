@@ -138,10 +138,6 @@
                                   <Component id="labelAlbumxCancion" min="-2" pref="66" max="-2" attributes="0"/>
                                   <Component id="comboBoxAlbumCancion" min="-2" pref="239" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="botonAgregarCancion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="textoResultadoAgregarCancion" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -150,6 +146,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="buttonCerrarSesion" min="-2" pref="122" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="botonAgregarCancion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="203" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -267,7 +267,7 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="comboBoxAlbumCancion" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="botonAgregarCancion" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonAgregarCancion" min="-2" pref="23" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="textoResultadoAgregarCancion" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>

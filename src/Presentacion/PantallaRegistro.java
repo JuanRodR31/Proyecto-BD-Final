@@ -54,6 +54,17 @@ public class PantallaRegistro extends javax.swing.JFrame {
                textoError.setText("no se pudo agregar el usuario");
            }
         } 
+        
+        if (tipoUsuario=="admin"){
+            PantallaLogin pLogin = new PantallaLogin();
+            pLogin.setVisible(true);
+            dispose();
+        }
+        else {
+            PantallaSuscribirse pSuscribirse = new PantallaSuscribirse();
+            pSuscribirse.setVisible(true);
+            dispose();
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -197,6 +208,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         registrarUsuario();
+        
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed

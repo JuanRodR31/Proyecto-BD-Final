@@ -457,25 +457,27 @@ public class FuncionesDAO {
         return false;
     }
     
-    /*public boolean crearCancionYAsignarTituloYAlbum (Cancion cancion, String idiomaTitulo, String titulo,String genero, String album){
+    public boolean crearCancionYAsignarTituloYAlbum ( String idiomaTitulo, String titulo,int duracion, String genero,String interpretePrincipal, String album){
         boolean agregoTitulo= false;
         boolean agregoAlbum=false;
         int idIdioma = convertirIdidiomaAID(idiomaTitulo);
-        int idInterpretePrincipal = convertirArtistaAID(cancion.getIdInterpretePrincipal());
+        int idInterpretePrincipal = convertirArtistaAID(interpretePrincipal);
         int idAlbum = convertirAlbumAID(album);
         int idGenero = convertirGeneroAID(genero);
+        int idCancion = obtenerProximoIdCancion();
+        Cancion cancion = new Cancion (idCancion, duracion, idGenero, idInterpretePrincipal);
+        System.out.println(cancion);
         boolean agregoCancion= agregarCancion (cancion);
         if (agregoCancion){
             System.out.println("agregocancion");
-            agregoTitulo =agregarTituloACancion (idIdioma, 1, titulo);
-            agregoAlbum = agregarCancionAAlbum (1, idAlbum);
+            agregoTitulo =agregarTituloACancion (idIdioma, idCancion, titulo);
+            agregoAlbum = agregarCancionAAlbum (idCancion, idAlbum);
         }
         if (agregoCancion && agregoTitulo && agregoAlbum){
             return true;
         }
         return false;
-        
-    }*/
+    }
     
     public boolean agregarInterpretesXCancion(String cancion, String interprete){
         String sql= "INSERT INTO InterpretesXCancion (cancion_id, interprete_id) values(?,?)";

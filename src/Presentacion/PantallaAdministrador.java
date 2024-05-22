@@ -403,14 +403,14 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                                         .addComponent(labelIdiomaTitulo))
                                     .addComponent(labelAlbumxCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(comboBoxAlbumCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(botonAgregarCancion)
-                                    .addGap(75, 75, 75))
                                 .addComponent(textoResultadoAgregarCancion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(128, 128, 128))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(buttonCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))))
+                        .addGap(55, 55, 55))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(botonAgregarCancion)
+                        .addGap(203, 203, 203))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -511,7 +511,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(comboBoxAlbumCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botonAgregarCancion)
+                        .addComponent(botonAgregarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(3, 3, 3)
                         .addComponent(textoResultadoAgregarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51))))
@@ -606,8 +606,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         String genero = (String) comboBoxGeneroCancion.getSelectedItem();
         String interPretePrincipal = (String) comboBoxInterpretePrincipal.getSelectedItem();
         String album = (String) comboBoxAlbumCancion.getSelectedItem();
-        //boolean creoCancion= admin.crearCancionYAsignarTituloYAlbum(idiomaTitulo, titulo, duracion, genero, interPretePrincipal, album);
-        boolean creoCancion=true;
+        boolean creoCancion= admin.crearCancionYAsignarTituloYAlbum(idiomaTitulo, titulo, duracion, genero, interPretePrincipal, album);
         if (creoCancion){
             textoResultadoAgregarCancion.setText("se agrego la cancion");
         }
