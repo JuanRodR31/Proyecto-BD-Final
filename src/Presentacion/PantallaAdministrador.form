@@ -29,75 +29,89 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
-                      <Component id="buttonAgregarArtista" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="buttonAgregarArtista" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="textoResultadoArtista" pref="286" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
                                       <Component id="botonAgregarAlbum" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel10" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="comboBoxArtistaSecundario" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
-                                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="comboBoxCancion" min="-2" pref="260" max="-2" attributes="0"/>
-                                                  <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="LabelAgregarArtista" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldNombreArtista" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="labelNombreArtistico" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldNombreArtistico" pref="253" max="32767" attributes="0"/>
+                                          <Component id="labelNombreArtista" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
+                                          <Component id="labelPais" min="-2" max="-2" attributes="0"/>
+                                          <Component id="comboBoxPais" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="LabelAgregarAlbumOEp" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="rbuttonAlbum" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="rbuttonEP" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="textoResultadoAgregarArtistaSecundario" min="-2" pref="366" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="botonAgregarArtistaSecundario" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="labelAlbumOEp" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldTituloAlbum" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                                          <Component id="labelTituloAlbum" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelFechaLanzamiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="textFieldFechaLanzamiento" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                                          <Component id="comboBoxEmpresaDiscografica" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
+                                          <Component id="textoResultadoAgregarAlbum" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="LabelAgregarArtista" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldNombreArtista" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="labelNombreArtistico" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldNombreArtistico" pref="253" max="32767" attributes="0"/>
-                                  <Component id="labelNombreArtista" alignment="0" min="-2" pref="53" max="-2" attributes="0"/>
-                                  <Component id="labelPais" min="-2" max="-2" attributes="0"/>
-                                  <Component id="comboBoxPais" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="LabelAgregarAlbumOEp" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="rbuttonAlbum" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="rbuttonEP" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <Component id="textoResultadoAgregarArtistaSecundario" min="-2" pref="366" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <Component id="labelAlbumOEp" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldTituloAlbum" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                                  <Component id="labelTituloAlbum" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelFechaLanzamiento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="textFieldFechaLanzamiento" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                                  <Component id="comboBoxEmpresaDiscografica" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
-                                  <Component id="textoResultadoAgregarAlbum" alignment="0" min="-2" pref="286" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
+                      <EmptySpace pref="84" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="comboBoxCancion" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="BotonEstadisticas" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="105" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="comboBoxArtistaSecundario" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
+                                  <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonAgregarArtistaSecundario" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="84" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -177,20 +191,20 @@
                               <Component id="comboBoxPais" min="-2" pref="31" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="buttonAgregarArtista" min="-2" pref="23" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="textoResultadoArtista" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                       <Component id="comboBoxEmpresaDiscografica" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="botonAgregarAlbum" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="labelTituloAlbum" min="-2" max="-2" attributes="0"/>
@@ -204,8 +218,11 @@
                           </Group>
                       </Group>
                       <Component id="textoResultadoAgregarAlbum" min="-2" pref="28" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -216,6 +233,9 @@
                       <Component id="comboBoxArtistaSecundario" min="-2" pref="33" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonAgregarArtistaSecundario" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="textoResultadoAgregarArtistaSecundario" min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="LabelAgregarCancionAAlbum" min="-2" max="-2" attributes="0"/>
@@ -227,7 +247,7 @@
                       <Component id="lableTituloCancion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="textFieldTituloCancion" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="labelDuracionCancion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="textFieldDuracionCancion" min="-2" pref="33" max="-2" attributes="0"/>
@@ -240,19 +260,19 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="comboBoxInterpretePrincipal" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="labelAlbumxCancion" min="-2" pref="13" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="labelAlbumxCancion" alignment="3" min="-2" pref="13" max="-2" attributes="0"/>
+                          <Component id="BotonEstadisticas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="comboBoxAlbumCancion" min="-2" pref="34" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonAgregarCancion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="textoResultadoAgregarCancion" min="-2" pref="27" max="-2" attributes="0"/>
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="textoResultadoAgregarArtistaSecundario" min="-2" pref="27" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -572,6 +592,22 @@
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="24" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Mostrar Estadisticas"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BotonEstadisticas">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Mostrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BotonEstadisticasActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

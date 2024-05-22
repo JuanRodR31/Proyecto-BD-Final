@@ -6,15 +6,15 @@ public class Usuario {
     private String nickname;
     private String password;
     private String rol;
-    private Pais pais;
+    private int  idPais;
 
-    public Usuario(String nombre, String apellido, String nickname, String password, String rol, Pais pais) {
+    public Usuario(String nombre, String apellido, String nickname, String password, String rol, int pais) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.nickname=nickname;
         this.password=password;
         this.rol=rol;
-        this.pais=pais;
+        this.idPais=pais;
     }
     public Usuario() {
     }
@@ -59,12 +59,12 @@ public class Usuario {
         this.rol = rol;
     }
 
-    public Pais getPais() {
-        return pais;
+    public int getIdPais() {
+        return idPais;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Usuario {
                 ", nickname='" + nickname + '\'' +
                 ", password='" + password + '\'' +
                 ", rol='" + rol + '\'' +
-                ", pais=" + pais +
+                ", pais=" + idPais +
                 '}';
     }
 }

@@ -1,17 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Album {
     private int idAlbum;
     private String titulo;
     private Date fechaLanzamiento;
-    private EmpresaDiscografica empresaDiscografica;
+    private int idEmpresaDiscografica;
     private String tipoAlbum;
+
+    public Album(int idAlbum, String titulo, Date fechaLanzamiento, int idEmpresaDiscografica, String tipoAlbum) {
+        this.idAlbum = idAlbum;
+        this.titulo = titulo;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.idEmpresaDiscografica = idEmpresaDiscografica;
+        this.tipoAlbum = tipoAlbum;
+    }
+    
+    
 
     public int getIdAlbum() {
         return idAlbum;
@@ -37,12 +43,12 @@ public class Album {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
-    public EmpresaDiscografica getEmpresaDiscografica() {
-        return empresaDiscografica;
+    public int getIdEmpresaDiscografica() {
+        return idEmpresaDiscografica;
     }
 
-    public void setEmpresaDiscografica(EmpresaDiscografica empresaDiscografica) {
-        this.empresaDiscografica = empresaDiscografica;
+    public void setIdEmpresaDiscografica(int idEmpresaDiscografica) {
+        this.idEmpresaDiscografica = idEmpresaDiscografica;
     }
 
     public String getTipoAlbum() {
@@ -53,12 +59,6 @@ public class Album {
         this.tipoAlbum = tipoAlbum;
     }
 
-    public Album(int idAlbum, String titulo, Date fechaLanzamiento, EmpresaDiscografica empresaDiscografica, String tipoAlbum) {
-        this.idAlbum = idAlbum;
-        this.titulo = titulo;
-        this.fechaLanzamiento = fechaLanzamiento;
-        this.empresaDiscografica= empresaDiscografica;
-        this.tipoAlbum = tipoAlbum;
-    }
+    
 
 }

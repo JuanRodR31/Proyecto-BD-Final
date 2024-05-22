@@ -1,4 +1,5 @@
-package Entidades;
+package Conexion;
+import Conexion.Constantes;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

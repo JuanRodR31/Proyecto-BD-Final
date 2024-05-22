@@ -4,8 +4,8 @@
  */
 package Presentacion;
 
-import modelo.AdministradorDAO;
-import modelo.RegistroDAO;
+import Entidades.Usuario;
+import modelo.FuncionesDAO;
 
 /**
  *
@@ -17,13 +17,13 @@ public class PantallaRegistro extends javax.swing.JFrame {
      * Creates new form Registro
      */
     public PantallaRegistro() {
-        AdministradorDAO admin = new AdministradorDAO();
+        FuncionesDAO admin = new FuncionesDAO();
         initComponents();
         admin.rellenarPaises(comboBoxPais);
     }
     public void registrarUsuario (){
-        RegistroDAO registro = new RegistroDAO();
-        AdministradorDAO admin = new AdministradorDAO();
+        FuncionesDAO registro = new FuncionesDAO();
+        FuncionesDAO admin = new FuncionesDAO();
         String campoP = comboBoxPais.getSelectedItem().toString();
         System.out.println(campoP);
         int idPais = admin.convertirPaisAID(campoP);
@@ -45,7 +45,8 @@ public class PantallaRegistro extends javax.swing.JFrame {
             textoError.setText("No pueden existir campos vacios");
         }
         else{
-           boolean reg=registro.registrarUsuario (idPais,campoN,campoA, campoU,tipoUsuario, contrasenaEncriptada);
+           Usuario usuario= new Usuario (campoN, campoA, campoU, contrasenaEncriptada, tipoUsuario, idPais);
+           boolean reg=registro.registrarUsuario (usuario);
            if (reg){
                textoError.setText("usuario "+ campoU +" agregado.");
            }

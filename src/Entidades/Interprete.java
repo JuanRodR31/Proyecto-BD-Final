@@ -8,13 +8,13 @@ public class Interprete {
     private int id;
     private String nombre;
     private String nombreArtistico;
-    private Pais pais;
+    private int idPais;
 
-    public Interprete(int id, String nombre, String nombreArtistico, Pais pais) {
+    public Interprete(int id, String nombre, String nombreArtistico, int pais) {
         this.id = id;
         this.nombre=nombre;
         this.nombreArtistico=nombreArtistico;
-        this.pais=pais;
+        this.idPais=pais;
     }
 
     public Interprete() {
@@ -44,12 +44,12 @@ public class Interprete {
         this.nombreArtistico = nombreArtistico;
     }
 
-    public Pais getPais() {
-        return pais;
+    public int getIdPais() {
+        return idPais;
     }
 
-    public void setPais(Pais pais) {
-        this.pais = pais;
+    public void setIdPais(int idPais) {
+        this.idPais = idPais;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Interprete {
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", nombreArtistico='" + nombreArtistico + '\'' +
-                ", pais=" + pais +
+                ", pais=" + idPais +
                 '}';
     }
 }

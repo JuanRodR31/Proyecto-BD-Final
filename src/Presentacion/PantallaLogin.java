@@ -4,8 +4,8 @@
  */
 package Presentacion;
 
-import modelo.Login;
-import modelo.LoginDAO;
+import Entidades.Login;
+import modelo.FuncionesDAO;
 
 /**
  *
@@ -21,7 +21,7 @@ public class PantallaLogin extends javax.swing.JFrame {
     }
     public void validar (){
         Login lg = new Login ();
-        LoginDAO login = new LoginDAO();
+        FuncionesDAO login = new FuncionesDAO();
         String nickname = usuarioTextField.getText();
         String contrasena= String.valueOf(contrasenaTextField.getPassword());
         if(!"".equals(nickname)|| !"".equals(contrasena)){
