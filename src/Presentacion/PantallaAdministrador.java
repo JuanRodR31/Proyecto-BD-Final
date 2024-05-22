@@ -33,7 +33,7 @@ public class PantallaAdministrador extends javax.swing.JFrame {
         
     }
     public void verEstadisticas (){
-        PantallaEstadisticas pEstadisticas = new PantallaEstadisticas();
+        PantallaAuditorias pEstadisticas = new PantallaAuditorias();
         pEstadisticas.setVisible(true);
         dispose();
     }

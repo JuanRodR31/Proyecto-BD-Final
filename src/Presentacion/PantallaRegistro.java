@@ -62,6 +62,7 @@ public class PantallaRegistro extends javax.swing.JFrame {
         }
         else {
             PantallaSuscribirse pSuscribirse = new PantallaSuscribirse();
+            pSuscribirse.setNickname(campoU);
             pSuscribirse.setVisible(true);
             dispose();
         }

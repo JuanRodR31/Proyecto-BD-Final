@@ -3,6 +3,7 @@ package modelo;
 import Entidades.Login;
 import Conexion.Conexion;
 import Entidades.Album;
+import Entidades.Auditoria;
 import Entidades.Cancion;
 import Entidades.Interprete;
 import Entidades.Usuario;
@@ -15,6 +16,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JComboBox;
 
 public class FuncionesDAO {
@@ -329,6 +332,27 @@ public class FuncionesDAO {
             System.out.println(e.toString());
         }
     }
+    //====================================================FUNCIONES RELLENAR TABLAS==========================================================================================
+    public List<Auditoria> obtenerListaAuditoria(){
+        List<Auditoria> auditorias = new ArrayList<>();
+        String sql= "SELECT * FROM auditoria";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Auditoria auditoria = new Auditoria();
+                auditoria.setIdItemModificado(rs.getInt("elemento_id"));
+                auditoria.setTabla(rs.getString("tabla"));
+                auditoria.setTipoModificacion(rs.getString("OPERACION"));
+                auditoria.setFechaHora(rs.getTimestamp("FECHA_HORA"));
+                auditorias.add(auditoria);
+            }  
+        } catch (SQLException e) {
+             e.printStackTrace();
+        }
+        return auditorias;
+    } 
     
     //====================================================FUNCIONES INSERTAR DATOS EN BD==========================================================================================
     
@@ -365,14 +389,8 @@ public class FuncionesDAO {
         ps.setInt(3, interprete.getIdPais());
 
         int filasAfectadas = ps.executeUpdate();
-        
         if (filasAfectadas > 0) {
-            ResultSet rs = ps.getGeneratedKeys(); // Obtiene las claves generadas
-            if (rs.next()) {
-                long idInterprete = rs.getLong(1); // Obtiene el ID generado
-                System.out.println("ID del intérprete agregado: " + idInterprete);
                 return true;
-            }
         }
         return false;
     } catch (SQLException ex) {
@@ -497,6 +515,19 @@ public class FuncionesDAO {
             e.printStackTrace();
         }
        return false;
+    }
+    
+    public void insertarSuscripcionXUsuario(String nickname, int tipoSuscripcion){
+        String sql= "INSERT INTO SUSCRIPCIONXUSUARIO (USUARIO_NICKNAME, SUSCRIPCION_ID) values(?,?)";
+        try{
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nickname);
+            ps.setInt(2, tipoSuscripcion);
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
     

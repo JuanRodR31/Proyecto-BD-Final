@@ -1,22 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Presentacion;
 
-/**
- *
- * @author juanl
- */
-public class PantallaSuscribirse extends javax.swing.JFrame {
+import modelo.FuncionesDAO;
 
+public class PantallaSuscribirse extends javax.swing.JFrame {
+    private String nickname;
     /**
      * Creates new form PantallaSuscribirse
      */
     public PantallaSuscribirse() {
         initComponents();
     }
-
+    public void setNickname(String nickname){
+        this.nickname=nickname;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,7 +86,11 @@ public class PantallaSuscribirse extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonSuscripcionGratuitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSuscripcionGratuitaActionPerformed
-        // TODO add your handling code here:
+        FuncionesDAO admin = new FuncionesDAO();
+        admin.insertarSuscripcionXUsuario(nickname, 3);
+        PantallaLogin pLogin = new PantallaLogin();
+        pLogin.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonSuscripcionGratuitaActionPerformed
 
     private void botonSuscripcionIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSuscripcionIndividualActionPerformed
