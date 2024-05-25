@@ -5,6 +5,7 @@ import Conexion.Conexion;
 import Entidades.Album;
 import Entidades.Auditoria;
 import Entidades.Cancion;
+import Entidades.CancionMostrable;
 import Entidades.Interprete;
 import Entidades.Usuario;
 import java.math.BigInteger;
@@ -528,6 +529,162 @@ public class FuncionesDAO {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+    //=============================================================FUNCIONES USUARIO=======================================================================================
+    public List<Cancion> obtenerListaCanciones(){
+        List<Cancion> canciones = new ArrayList<>();
+        String sql= "SELECT * FROM cancion";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Cancion c= new Cancion();
+                c.setId(rs.getInt("id"));
+                c.setDuracion(rs.getInt("duracion"));
+                c.setIdGenero(rs.getInt("genero_id"));
+                c.setIdInterpretePrincipal(rs.getInt("idinterpreteprincipal"));
+                canciones.add(c);
+            }  
+        } catch (SQLException e) {
+             e.printStackTrace();
+        }
+        return canciones;
+    }
+    
+    
+    public List<Integer> obtenerIDsCancionesConTituloLike (String tituloCancion){
+        List<Integer> auxIDs= new ArrayList();
+        String sql = "SELECT CANCION_ID FROM IDIOMASXCANCION WHERE UPPER(NOMBRECANCION) LIKE ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, "%" + tituloCancion.toUpperCase() + "%");
+            rs = ps.executeQuery();
+            while (rs.next()){
+                int idCancion = rs.getInt("CANCION_ID");
+                auxIDs.add(idCancion);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return auxIDs;
+    }
+    public List<Cancion> obtenerCancionesPorIds(String tituloCancion) {
+        List<Cancion> canciones = new ArrayList<>();
+        List<Integer> ids= obtenerIDsCancionesConTituloLike (tituloCancion);
+        StringBuilder sql = new StringBuilder("SELECT ID, DURACION, GENERO_ID, IDINTERPRETEPRINCIPAL FROM CANCION WHERE ID IN (");
+        for (int i = 0; i < ids.size(); i++) {
+            sql.append("?");
+            if (i < ids.size() - 1) {
+                sql.append(",");
+            }
+        }
+        sql.append(")");
+
+        try {
+            con = cn.getConnection();
+            ps = con.prepareStatement(sql.toString());
+            for (int i = 0; i < ids.size(); i++) {
+                ps.setInt(i + 1, ids.get(i));
+            }
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("ID");
+                int duracion = rs.getInt("DURACION");
+                int idGenero = rs.getInt("GENERO_ID");
+                int idInterpretePrincipal = rs.getInt("IDINTERPRETEPRINCIPAL");
+                canciones.add(new Cancion(id, duracion, idGenero, idInterpretePrincipal));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return canciones;
+    }
+    
+    private String convertirIdCancionATitulo(int idCancion){
+        String sql = "SELECT nombrecancion FROM idiomasxcancion WHERE cancion_id = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idCancion);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                String titulo = rs.getString("nombrecancion");
+                return titulo;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+    private String convertirIdGeneroANombre(int idGenero){
+        String sql = "SELECT nombre FROM genero WHERE id = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idGenero);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                String nombre = rs.getString("nombre");
+                return nombre;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+    private String convertirIdInterpreteAString(int idInterprete){
+        String sql = "SELECT nombreArtistico FROM interprete WHERE id = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idInterprete);
+            rs = ps.executeQuery();
+            if (rs.next()){
+                String nombre = rs.getString("nombreArtistico");
+                return nombre;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        }
+        return null;
+    }
+    
+    public List<CancionMostrable> obtenerListaCancionesMostrables(List<Cancion> canciones){
+        List<CancionMostrable> ListaAux= new ArrayList<>();
+        for (Cancion c: canciones){
+            
+            String tituloCancion = convertirIdCancionATitulo(c.getId());
+            int duracionCancion = c.getDuracion();
+            String generoCancion = convertirIdGeneroANombre(c.getIdGenero());
+            String artista = convertirIdInterpreteAString(c.getIdInterpretePrincipal());
+            CancionMostrable cm= new CancionMostrable(tituloCancion, artista, duracionCancion, generoCancion);
+            ListaAux.add(cm);
+        }
+        return ListaAux;
+    }
+    
+    
+    public List<Auditoria> obtenerListaCancionesPlaylist(){
+        List<Auditoria> auditorias = new ArrayList<>();
+        String sql= "SELECT * FROM auditoria";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Auditoria auditoria = new Auditoria();
+                auditoria.setIdItemModificado(rs.getInt("elemento_id"));
+                auditoria.setTabla(rs.getString("tabla"));
+                auditoria.setTipoModificacion(rs.getString("OPERACION"));
+                auditoria.setFechaHora(rs.getTimestamp("FECHA_HORA"));
+                auditorias.add(auditoria);
+            }  
+        } catch (SQLException e) {
+             e.printStackTrace();
+        }
+        return auditorias;
     }
 }
     
