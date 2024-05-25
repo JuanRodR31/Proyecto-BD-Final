@@ -6,7 +6,9 @@ import Entidades.Album;
 import Entidades.Auditoria;
 import Entidades.Cancion;
 import Entidades.CancionMostrable;
+import Entidades.CancionXPlaylist;
 import Entidades.Interprete;
+import Entidades.Playlist;
 import Entidades.Usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -685,6 +687,106 @@ public class FuncionesDAO {
              e.printStackTrace();
         }
         return auditorias;
+    }
+    
+    public List <Playlist> bucarPlaylistsUsuario (String nickname){
+      List <Playlist> listAux= new ArrayList();
+        String sql= "SELECT * FROM LISTAREPRODUCCION WHERE usuario_nickname = ?";
+        try {
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nickname);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Playlist playlist= new Playlist();
+                playlist.setId(rs.getInt("id"));
+                playlist.setNombre(rs.getString("nombre"));
+                playlist.setTipo(rs.getString("tipo"));
+                listAux.add(playlist);
+            }  
+        } catch (SQLException e) {
+             e.printStackTrace();
+        }
+        return listAux;
+    }
+    
+    public boolean validarLike(String tituloCancion, String username){
+        String sql = "SELECT COUNT(*) AS cantidad FROM CANCIONESLIKEXUSUARIO WHERE CANCION_ID = ? AND USUARIO_NICKNAME = ?";
+        int cantidad=0;
+        try{
+            int cancion_id = convertirCancionAID(tituloCancion);
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cancion_id);
+            ps.setString(2, username);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                cantidad = rs.getInt("cantidad");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return cantidad > 0;
+    }
+    public boolean añadirLikesDelUsuario (String tituloCancion, String username){
+        String sql= "INSERT INTO CANCIONESLIKEXUSUARIO VALUES (?,?)";
+        try{
+            int cancion_id = convertirCancionAID(tituloCancion);
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setInt(2, cancion_id);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
+    }
+    public boolean quitarLikeDelUsuario(String tituloCancion, String username){
+        String sql = "DELETE FROM CANCIONESLIKEXUSUARIO WHERE CANCION_ID = ? AND USUARIO_NICKNAME = ?";
+        try{
+            int cancion_id = convertirCancionAID(tituloCancion);
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cancion_id);
+            ps.setString(2, username);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
+    }
+    public boolean anadirCancionAPlaylist (CancionXPlaylist cancionPlaylist){
+        String sql= "INSERT INTO CANCIONESXLISTAS VALUES (?,?,?,?)";
+        try{
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cancionPlaylist.getIdCancion());
+            ps.setString(2,cancionPlaylist.getNombreLista());
+            ps.setInt(3, cancionPlaylist.getIdPlaylist());
+            ps.setInt(4, cancionPlaylist.getPosicion());
+            System.out.println(cancionPlaylist.getIdPlaylist());
+            
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
     }
 }
     

@@ -34,6 +34,7 @@ public class PantallaLogin extends javax.swing.JFrame {
                 }
                 else {
                      PantallaUsuario pantUser= new PantallaUsuario();
+                     pantUser.setNickname(nickname);
                      pantUser.setVisible(true);
                 }
                 dispose();
