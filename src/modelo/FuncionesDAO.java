@@ -7,6 +7,7 @@ import Entidades.Auditoria;
 import Entidades.Cancion;
 import Entidades.CancionMostrable;
 import Entidades.CancionXPlaylist;
+import Entidades.CancionXPlaylistMostrable;
 import Entidades.Interprete;
 import Entidades.Playlist;
 import Entidades.Usuario;
@@ -19,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
@@ -85,6 +87,29 @@ public class FuncionesDAO {
             e.printStackTrace();
             return null;
         }
+    }
+    public boolean insertarSuscripcionXUsuarioPremium (String nickname, int tipoSuscripcion, long numeroTarjeta){
+        String sql= "INSERT INTO SUSCRIPCIONXUSUARIO VALUES (?,?,?,?,?)";
+        try{
+            Date fechaHoy = Date.valueOf(LocalDate.now());
+            Date fechaProximoMes = Date.valueOf(LocalDate.now().plusMonths(1));
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setDate(1, fechaHoy);
+            ps.setDate(2, fechaProximoMes);
+            ps.setString(3, nickname);
+            ps.setInt(4, tipoSuscripcion);
+            ps.setLong(5, numeroTarjeta);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
     }
     //====================================================FUNCIONES ADMINISTRADOR==========================================================================================
     
@@ -788,6 +813,90 @@ public class FuncionesDAO {
         }
        return false;
     }
+    public boolean cambiarNombrePlaylist(String nombreNuevo, int idPlaylist){
+        String sql = "UPDATE LISTAREPRODUCCION SET NOMBRE = ? WHERE ID = ?";
+        try{
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombreNuevo);
+            ps.setInt(2, idPlaylist);
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
+    }
+    /*public List<CancionXPlaylistMostrable> obtenerCancionesDeListaReproduccion(String nombreLista, int idLista) {
+        List<CancionXPlaylistMostrable> lcxp= new ArrayList<>();
+        List<CancionMostrable> ListaAux= new ArrayList<>();
+        for (Cancion c: canciones){
+            
+            String tituloCancion = convertirIdCancionATitulo(c.getId());
+            int duracionCancion = c.getDuracion();
+            String generoCancion = convertirIdGeneroANombre(c.getIdGenero());
+            String artista = convertirIdInterpreteAString(c.getIdInterpretePrincipal());
+            CancionMostrable cm= new CancionMostrable(tituloCancion, artista, duracionCancion, generoCancion);
+            ListaAux.add(cm);
+        }
+        return lcxp;
+    }*/
+    
+    public List<CancionXPlaylistMostrable> obtenerCancionesDeListaReproduccion(String nombreUsuario, int idLista) {
+        List<CancionXPlaylistMostrable> canciones = new ArrayList<>();
+        String sql = "SELECT cl.posicion, ic.nombrecancion AS nombre, i.nombreartistico AS artista, c.duracion, g.nombre AS genero " +
+                     "FROM cancionesxlistas cl " +
+                     "JOIN cancion c ON cl.cancion_id = c.id " +
+                     "JOIN interprete i ON c.idinterpreteprincipal = i.id " +
+                     "LEFT JOIN genero g ON c.genero_id = g.id " +
+                     "JOIN idiomasxcancion ic ON c.id = ic.cancion_id " +
+                     "WHERE cl.listareproduccion_nickname = ? AND cl.listareproduccion_id = ?";
+        try {
+            con = cn.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nombreUsuario);
+            ps.setInt(2, idLista);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int posicion = rs.getInt("posicion");
+                String nombreCancion = rs.getString("nombre");
+                String artista = rs.getString("artista");
+                int duracion = rs.getInt("duracion");
+                String genero = rs.getString("genero");
+                CancionXPlaylistMostrable cancion = new CancionXPlaylistMostrable(posicion, nombreCancion, artista, duracion, genero);
+                canciones.add(cancion);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return canciones;
+    }
+    
+    public boolean cambiarPosicionCancion (CancionXPlaylist cancionPlaylist, int nuevaPosicion){
+       String sql = "UPDATE CANCIONESXLISTAS SET POSICION = ? WHERE CANCION_ID = ? AND LISTAREPRODUCCION_NICKNAME = ? AND LISTAREPRODUCCION_ID = ?"; 
+       try{
+            con= cn.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, nuevaPosicion);
+            ps.setInt(2, cancionPlaylist.getIdCancion());
+            ps.setString(3, cancionPlaylist.getNombreLista());
+            ps.setInt(4, cancionPlaylist.getIdPlaylist());
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+       return false;
+    }
+    
 }
     
     
