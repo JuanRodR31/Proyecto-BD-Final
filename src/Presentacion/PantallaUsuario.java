@@ -604,9 +604,13 @@ public class PantallaUsuario extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public void cerrarSesion (){
+        PantallaLogin pantallaLogin = new PantallaLogin();
+        pantallaLogin.setVisible(true);
+        dispose();
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        cerrarSesion();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
@@ -627,6 +631,9 @@ public class PantallaUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_textTituloCancionActionPerformed
 
     private void verPlaylistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verPlaylistsActionPerformed
+        DefaultTableModel tabla = (DefaultTableModel)tablaPlaylists.getModel();
+        tabla.setRowCount(0);
+        tablaPlaylists.setModel(tabla);
         obtenerPlaylistsUsuario();
         pestanaUsuario.setSelectedIndex(1);
     }//GEN-LAST:event_verPlaylistsActionPerformed
@@ -702,7 +709,8 @@ public class PantallaUsuario extends javax.swing.JFrame {
             int idPlaylist= Integer.parseInt(tablaPlaylists.getValueAt(filaSeleccionada, 0).toString());
             cancionPlaylist.setIdPlaylist(idPlaylist);
             cancionPlaylist.setNombreLista(nickname);
-            cancionPlaylist.setPosicion(1);
+            cancionPlaylist.setPosicion(admin.contarCancionesPlayList(cancionPlaylist.getIdPlaylist()));
+            System.out.println(cancionPlaylist.getIdCancion());
             boolean agrego=admin.anadirCancionAPlaylist(cancionPlaylist);
             if (agrego){
                 l2AnadirCancion.setText("Se añadio correctamente");
@@ -719,7 +727,23 @@ public class PantallaUsuario extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
+    private boolean validarPosicion(int posicion){
+        int cantidadCanciones= tablaCancionesPlaylist.getRowCount();
+        return cantidadCanciones>=posicion && posicion>0;
+    }
+    
+    private String obtenerNombreCancionPorPosicion(int posicion) {
+        int rowCount = tablaCancionesPlaylist.getRowCount();
 
+        for (int i = 0; i < rowCount; i++) {
+            int pos = (int) tablaCancionesPlaylist.getValueAt(i, 0); 
+            if (pos == posicion) {
+                return (String) tablaCancionesPlaylist.getValueAt(i, 1); 
+            }
+        }
+        return null;
+    }
+    
     private void BcambiarOrdenCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BcambiarOrdenCancionesActionPerformed
         int filaSeleccionadaP = tablaPlaylists.getSelectedRow();
         int filaSeleccionada = tablaCancionesPlaylist.getSelectedRow();
@@ -730,18 +754,30 @@ public class PantallaUsuario extends javax.swing.JFrame {
             int idListaReproduccion=(int) tablaPlaylists.getValueAt(filaSeleccionadaP, 0);
             System.out.println(idListaReproduccion);
             int posicion =1;
-            CancionXPlaylist cancionPlaylist= new CancionXPlaylist( idCancion, nickname, idListaReproduccion, posicion);
+            int posicionVieja= (int) tablaCancionesPlaylist.getValueAt(filaSeleccionada, 0);
             int nuevaPosicion= Integer.parseInt(numPosicion.getText());
-            boolean cambio= admin.cambiarPosicionCancion(cancionPlaylist, nuevaPosicion);
-            if (cambio){
-                DefaultTableModel tabla = (DefaultTableModel)tablaCancionesPlaylist.getModel();
-                tabla.setRowCount(0);
-                tablaCancionesPlaylist.setModel(tabla);
-                obtenerCancionesPlayList();
-                ROrdenCanciones.setText("Cambiado Exitosamenre");
-            }
-            else{
-               ROrdenCanciones.setText("No se pudo cambiar la posicion"); 
+            int idCancionVieja= admin.convertirCancionAID(obtenerNombreCancionPorPosicion(nuevaPosicion));
+            System.out.println("cancion vieja"+ idCancionVieja);
+            CancionXPlaylist cancionPlaylist= new CancionXPlaylist( idCancion, nickname, idListaReproduccion, posicion);
+            CancionXPlaylist cancionPlaylistVieja= new CancionXPlaylist( idCancionVieja, nickname, idListaReproduccion, posicionVieja);
+            if (validarPosicion(nuevaPosicion)){
+                boolean cambioVieja= admin.cambiarPosicionCancion(cancionPlaylistVieja, posicionVieja);
+                System.out.println("cambioV"+cambioVieja);
+                boolean cambio= admin.cambiarPosicionCancion(cancionPlaylist, nuevaPosicion);
+                System.out.println("cambioN"+cambio);
+                if (cambio && cambioVieja){
+                    DefaultTableModel tabla = (DefaultTableModel)tablaCancionesPlaylist.getModel();
+                    tabla.setRowCount(0);
+                    tablaCancionesPlaylist.setModel(tabla);
+                    obtenerCancionesPlayList();
+                    ROrdenCanciones.setText("Cambiado Exitosamente");
+                }
+                else{
+                    ROrdenCanciones.setText("No se pudo cambiar la posicion"); 
+                }
+            } 
+            else {
+                ROrdenCanciones.setText("La posicion es mayor a la cantidad de canciones o esta introduciendo un valor menor a 0");
             }
         }
         else{

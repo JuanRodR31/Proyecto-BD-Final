@@ -791,6 +791,24 @@ public class FuncionesDAO {
         }
        return false;
     }
+    public int contarCancionesPlayList (int listaReproduccionId){
+        int cantidadFilas =0;
+        String sql = "SELECT COUNT(*) FROM cancionesxlistas WHERE listareproduccion_id = ?";
+        try {
+            con = cn.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, listaReproduccionId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cantidadFilas = rs.getInt(1);
+                cantidadFilas +=1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return cantidadFilas;
+    }
     public boolean anadirCancionAPlaylist (CancionXPlaylist cancionPlaylist){
         String sql= "INSERT INTO CANCIONESXLISTAS VALUES (?,?,?,?)";
         try{

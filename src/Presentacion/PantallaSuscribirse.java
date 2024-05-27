@@ -171,7 +171,7 @@ public class PantallaSuscribirse extends javax.swing.JFrame {
         if (validar16digitos(numero)){
             long numeroTarjeta = Long.parseLong(numero);
             FuncionesDAO admin = new FuncionesDAO();
-            boolean regsitro =admin.insertarSuscripcionXUsuarioPremium("ado", 1, numeroTarjeta);
+            boolean regsitro =admin.insertarSuscripcionXUsuarioPremium(nickname, 1, numeroTarjeta);
             if (regsitro){
                 PantallaLogin pLogin = new PantallaLogin();
                 pLogin.setVisible(true);
